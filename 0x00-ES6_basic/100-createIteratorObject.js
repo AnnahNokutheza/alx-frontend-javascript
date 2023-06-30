@@ -1,18 +1,17 @@
 export default function createIteratorObject(report) {
-  /* eslint-disable */
-  let departments = Object.values(report);
-  let employees = [];
+  const departments = Object.values(report);
+  const employees = [];
 
-  for (let department of departments) {
-    employees.push(...department);
+  for (const department of departments) {
+    employees.push(...department.map(employee => employee.name));
   }
 
   let index = 0;
 
   return {
-    next: function() {
+    next() {
       if (index < employees.length) {
-        const name = employees[index++].name;
+        const name = employees[index++];
         return { value: name, done: false };
       } else {
         return { done: true };
