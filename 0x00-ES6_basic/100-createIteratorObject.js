@@ -1,22 +1,29 @@
 export default function createIteratorObject(report) {
   /* eslint-disable */
   const departments = Object.values(report);
-  const employees = [];
-
-  for (const department of departments) {
-    employees.push(...department.map(employee => employee.name));
-  }
 
   let index = 0;
+  let currentDepartmentIndex = 0;
+  let currentEmployeeIndex = 0;
 
   return {
     next() {
-      if (index < employees.length) {
-        const name = employees[index++];
-        return { value: name, done: false };
-      } else {
+      if (currentDepartmentIndex >= departments.length) {
         return { done: true };
       }
+
+      const currentDepartment = departments[currentDepartmentIndex];
+
+      if (currentEmployeeIndex >= currentDepartment.length) {
+        currentDepartmentIndex++;
+        currentEmployeeIndex = 0;
+        return this.next();
+      }
+
+      const currentEmployee = currentDepartment[currentEmployeeIndex];
+      currentEmployeeIndex++;
+
+      return { value: currentEmployee, done: false };
     }
   };
 }
