@@ -16,4 +16,5 @@ const getListStudents = () => [
   },
 ];
 
-export default getListStude
+module.exports = getListStudents;
+
