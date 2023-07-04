@@ -1,16 +1,15 @@
-export default function updateStudentGradeByCity(listStudents, city, newGrades) {
-  const students = listStudents.filter((student) => student.location === city);
-  for (const student of students) {
-    student.grade = 'N/A';
-  }
-  const newStudents = students.map((student) => {
-    const single = student;
-    for (const grade of newGrades) {
-      if (single.id === grade.studentId) {
-        single.grade = grade.grade;
-      }
-    }
-    return single;
-  });
-  return newStudents;
+/** Create a function updateStudentGradeByCity
+that returns an array of students for a specific city with their new grade
+
+It should accept a list of students (from getListStudents), a city (String)
+and newGrades (Array of “grade” objects) as parameters.
+If a student doesn’t have grade in newGrades, the final grade should be N/A.* */
+export default function updateStudentGradeByCity(students, city, newGrade) {
+  return students
+    .filter((student) => student.location === city)
+    .map((student) => {
+      const grades = newGrade.find((grade) => grade.studentId === student.id);
+      const grade = grades ? grades.grade : 'N/A';
+      return { ...student, grade };
+    });
 }
