@@ -1,11 +1,7 @@
 import getStudentsByLocation from './your-module';
 
-const students = [
-  { name: 'John', location: 'New York' },
-  { name: 'Alice', location: 'Los Angeles' },
-  { name: 'Bob', location: 'New York' },
-  { name: 'Eve', location: 'San Francisco' }
-];
+function getStudentsByLocation(students, city) {
+  return students.filter((student) => student.location === city);
+}
 
-const filteredStudents = getStudentsByLocation(students, 'New York');
-console.log(filteredStudents);
+export default getStudentsByLocation;
