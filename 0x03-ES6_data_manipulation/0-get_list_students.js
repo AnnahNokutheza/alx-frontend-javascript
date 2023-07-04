@@ -1,4 +1,4 @@
-const getListStudents = () => [
+export const getListStudents = () => [
   {
     id: 1,
     firstName: 'Guillaume',
@@ -16,5 +16,4 @@ const getListStudents = () => [
   },
 ];
 
-module.exports = getListStudents;
 
