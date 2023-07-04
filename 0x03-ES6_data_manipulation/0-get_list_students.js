@@ -6,3 +6,4 @@ function getListStudents() {
   ];
 }
 
+export default 0-get_list_students.js
